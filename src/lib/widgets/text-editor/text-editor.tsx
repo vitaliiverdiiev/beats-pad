@@ -10,7 +10,12 @@ import BulletList from "@tiptap/extension-bullet-list";
 import OrderedList from "@tiptap/extension-ordered-list";
 import ImageResize from "tiptap-extension-resize-image";
 
-export const TextEditor = ({ content, onChange }) => {
+interface TextEditorProps {
+  content: string;
+  onChange: (html: string) => void;
+}
+
+export const TextEditor: React.FC<TextEditorProps> = ({ content, onChange }) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure(),

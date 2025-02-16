@@ -1,24 +1,11 @@
-"use client";
-import { List } from "lucide-react";
-import { Toggle } from "@/shared/ui";
-import {
-  Heading1,
-  Heading2,
-  Heading3,
-  Code,
-  Bold,
-  Italic,
-  Strikethrough,
-  AlignCenter,
-  AlignLeft,
-  AlignRight,
-  Highlighter,
-  Upload,
-} from "lucide-react";
-import { ListOrdered } from "lucide-react";
+import { Editor } from "@tiptap/react";
+import { ToolbarOption } from "./toolbar-options.enum";
+import { Icon } from "@/shared/ui";
 
-export const Toolbar = ({ editor }) => {
-  if (!editor) return null;
+export const generateToolbarOptions = (
+  editor: Editor,
+  allowedLabels: ToolbarOption[]
+) => {
   const addImage = () => {
     const url = window.prompt("URL");
     if (url) {
@@ -26,91 +13,97 @@ export const Toolbar = ({ editor }) => {
     }
   };
 
-  const Options = [
+  const options = [
     {
-      icon: <Heading1 className="size-4" />,
+      label: ToolbarOption.Heading1,
+      icon: <Icon icon='heading-1' />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 1 }).run(),
       preesed: editor.isActive("heading", { level: 1 }),
     },
     {
-      icon: <Heading2 className="size-4" />,
+      label: ToolbarOption.Heading2,
+      icon: <Icon icon='heading-2' />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 2 }).run(),
       preesed: editor.isActive("heading", { level: 2 }),
     },
     {
-      icon: <Heading3 className="size-4" />,
+      label: ToolbarOption.Heading3,
+      icon: <Icon icon='heading-3' />,
       onClick: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
       preesed: editor.isActive("heading", { level: 3 }),
     },
     {
-      icon: <Bold className="size-4" />,
+      label: ToolbarOption.Bold,
+      icon: <Icon icon='bold' />,
       onClick: () => editor.chain().focus().toggleBold().run(),
       preesed: editor.isActive("bold"),
     },
     {
-      icon: <Italic className="size-4" />,
+      label: ToolbarOption.Italic,
+      icon: <Icon icon='italic' />,
       onClick: () => editor.chain().focus().toggleItalic().run(),
       preesed: editor.isActive("italic"),
     },
     {
-      icon: <Strikethrough className="size-4" />,
+      label: ToolbarOption.Strikethrough,
+      icon: <Icon icon='strikethrough' />,
       onClick: () => editor.chain().focus().toggleStrike().run(),
       preesed: editor.isActive("strike"),
     },
     {
-      icon: <AlignLeft className="size-4" />,
+      label: ToolbarOption.AlignLeft,
+      icon: <Icon icon='align-left' />,
       onClick: () => editor.chain().focus().setTextAlign("left").run(),
       preesed: editor.isActive({ textAlign: "left" }),
     },
     {
-      icon: <AlignCenter className="size-4" />,
+      label: ToolbarOption.AlignCenter,
+      icon: <Icon icon='align-center' />,
       onClick: () => editor.chain().focus().setTextAlign("center").run(),
       preesed: editor.isActive({ textAlign: "center" }),
     },
     {
-      icon: <AlignRight className="size-4" />,
+      label: ToolbarOption.AlignRight,
+      icon: <Icon icon='align-right' />,
       onClick: () => editor.chain().focus().setTextAlign("right").run(),
       preesed: editor.isActive({ textAlign: "right" }),
     },
     {
-      icon: <List className="size-4" />,
+      label: ToolbarOption.BulletList,
+      icon: <Icon icon='list' />,
       onClick: () => editor.chain().focus().toggleBulletList().run(),
       preesed: editor.isActive("bulletList"),
     },
     {
-      icon: <ListOrdered className="size-4" />,
+      label: ToolbarOption.OrderedList,
+      icon: <Icon icon='list-ordered' />,
       onClick: () => editor.chain().focus().toggleOrderedList().run(),
       preesed: editor.isActive("orderedList"),
     },
     {
-      icon: <Code className="size-4" />,
+      label: ToolbarOption.Code,
+      icon: <Icon icon='code' />,
       onClick: () => editor.chain().focus().toggleCodeBlock().run(),
       preesed: editor.isActive("code"),
     },
     {
-      icon: <Highlighter className="size-4" />,
+      label: ToolbarOption.Highlight,
+      icon: <Icon icon='highlighter' />,
       onClick: () => editor.chain().focus().toggleHighlight().run(),
       preesed: editor.isActive("highlight"),
     },
     {
-      icon: <Upload className="size-4" />,
+      label: ToolbarOption.Image,
+      icon: <Icon icon='upload' />,
       onClick: () => addImage(),
       preesed: editor.isActive("image"),
     },
   ];
 
-  return (
-    <div className="border rounded-md p-1.5 mb-1 bg-slate-50 space-x-1 sticky  top-10 z-50">
-      {Options.map((option, i) => (
-        <Toggle
-          key={i}
-          size="sm"
-          pressed={option.preesed}
-          onPressedChange={option.onClick}
-        >
-          {option.icon}
-        </Toggle>
-      ))}
-    </div>
-  );
+  return {
+    options,
+    allowedOptions: options.filter((option) =>
+      allowedLabels.includes(option.label)
+    ),
+  };
 };

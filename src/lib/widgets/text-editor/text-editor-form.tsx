@@ -1,6 +1,6 @@
 "use client";
-import {TextEditor} from "./text-editor";
-import { useForm } from "react-hook-form";
+import { TextEditor } from "./text-editor";
+import { SubmitHandler, useForm } from "react-hook-form";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/shared/ui";
@@ -12,11 +12,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/shared/ui/form";
-function extractTextFromHTML(html) {
+
+export const extractTextFromHTML = (html: string): string => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(html, "text/html");
   return doc.body.textContent?.trim() || "";
-}
+};
 
 const formSchema = z.object({
   post: z.string().refine(
@@ -29,8 +30,10 @@ const formSchema = z.object({
   ),
 });
 
+type FormValues = z.infer<typeof formSchema>;
+
 export const TextEditorForm = () => {
-  const form = useForm({
+  const form = useForm<FormValues>({
     mode: "onTouched",
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,7 +41,7 @@ export const TextEditorForm = () => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
 
@@ -67,4 +70,4 @@ export const TextEditorForm = () => {
       </Form>
     </div>
   );
-}
+};
