@@ -3,8 +3,8 @@ export const routes = {
     label: "Home",
     path: () => "/",
   },
-  editor: {
-    label: "Editor",
-    path: () => "/editor",
+  lyrics: {
+    label: "Lyrics",
+    path: () => "/lyrics",
   },
 };

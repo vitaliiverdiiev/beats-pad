@@ -23,13 +23,14 @@ export const Toolbar: React.FC<Props> = ({ editor }) => {
   ]);
 
   return (
-    <div className="border rounded-md p-1.5 mb-1 bg-slate-50 space-x-1 sticky  top-10 z-50">
+    <div className="mb-2 flex items-center gap-2">
       {allowedOptions.map((option, i) => (
         <Toggle
           key={i}
           size="sm"
           pressed={option.preesed}
           onPressedChange={option.onClick}
+          variant='outline'
         >
           {option.icon}
         </Toggle>

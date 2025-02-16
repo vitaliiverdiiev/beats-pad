@@ -9,7 +9,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/shared/ui/form";
 
@@ -54,7 +53,6 @@ export const TextEditorForm = () => {
             name="post"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Post</FormLabel>
                 <FormControl>
                   <TextEditor
                     content={field.value}

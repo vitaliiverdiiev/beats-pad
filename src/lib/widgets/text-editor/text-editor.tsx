@@ -42,7 +42,7 @@ export const TextEditor: React.FC<TextEditorProps> = ({ content, onChange }) => 
     content: content,
     editorProps: {
       attributes: {
-        class: "min-h-[156px] border rounded-md bg-slate-50 py-2 px-3",
+        class: "min-h-[156px] rounded-md py-2 px-3 shadow-md",
       },
     },
     onUpdate: ({ editor }) => {
