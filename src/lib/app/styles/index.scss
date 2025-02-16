@@ -64,3 +64,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+.editor-container {
+  min-height: 100vh; /* Full-page height */
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  cursor: text;
+}
+
+.editor-content {
+  min-height: 100%;
+  width: 100%;
+}
