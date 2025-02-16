@@ -16,11 +16,11 @@ export const LyricsList = () => {
   if (error) return <p>Error loading lyrics.</p>;
 
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-4">
       {lyricsList!.length > 0 ? (
         lyricsList!.map((lyric) => (
-          <Link key={lyric.id} href={`/lyrics/${lyric.id}`}>
-            <li className="border p-4 rounded-lg shadow-sm">
+          <li key={lyric.id} className="border p-4 rounded-lg shadow-sm">
+            <Link href={`/lyrics/${lyric.id}`}>
               <h2 className="font-semibold mb-4">{lyric.title}</h2>
 
               <LyricsMarkdown content={lyric.content} />
@@ -28,8 +28,8 @@ export const LyricsList = () => {
               <p className="text-sm text-gray-400 mt-5 text-right">
                 {new Date(lyric.createdAt).toLocaleDateString()}
               </p>
-            </li>
-          </Link>
+            </Link>
+          </li>
         ))
       ) : (
         <p>No lyrics found.</p>
