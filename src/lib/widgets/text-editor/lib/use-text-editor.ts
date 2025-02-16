@@ -11,6 +11,7 @@ import { useEditor } from "@tiptap/react";
 
 export const useTextEditor = ({ content, onChange }: TextEditorProps) => {
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure(),
       TextAlign.configure({

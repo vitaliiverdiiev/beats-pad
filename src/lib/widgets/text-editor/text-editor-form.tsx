@@ -1,7 +1,7 @@
 "use client";
 
 import { TextEditor } from "./text-editor";
-import { Button } from "@/shared/ui";
+import { Button, Input } from "@/shared/ui";
 import {
   Form,
   FormControl,
@@ -20,7 +20,20 @@ export const TextEditorForm = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
             control={form.control}
-            name="post"
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormControl>
+                  <Input placeholder="Enter title" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="content"
             render={({ field }) => (
               <FormItem>
                 <FormControl>
@@ -33,7 +46,10 @@ export const TextEditorForm = () => {
               </FormItem>
             )}
           />
-          <Button className="mt-4">Submit</Button>
+
+          <Button className="mt-4" variant="outline">
+            Save
+          </Button>
         </form>
       </Form>
     </div>

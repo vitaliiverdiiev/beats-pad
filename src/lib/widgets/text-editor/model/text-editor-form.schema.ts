@@ -1,14 +1,8 @@
 import { z } from "zod";
 
-export const textEdotorFormSchema = z.object({
-  post: z.string().refine(
-    (value) => {
-      return extractTextFromHTML(value).trim().length >= 5;
-    },
-    {
-      message: "The text must be at least 5 characters long after trimming",
-    }
-  ),
+export const textEditorFormSchema = z.object({
+  title: z.string().min(3, "Title must be at least 3 characters"),
+  content: z.string().min(10, "Lyrics must be at least 10 characters"),
 });
 
-export type TextEditorFormValues = z.infer<typeof textEdotorFormSchema>;
+export type TextEditorFormValues = z.infer<typeof textEditorFormSchema>;
