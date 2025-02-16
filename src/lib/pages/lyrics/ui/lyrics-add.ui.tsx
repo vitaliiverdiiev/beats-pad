@@ -1,3 +1,9 @@
+import { TextEditorForm } from "@/widgets";
+
 export const LyricsAddPage = () => {
-  return <h1>Lyrics Add Page</h1>;
+  return (
+    <div className="container">
+      <TextEditorForm />
+    </div>
+  );
 };

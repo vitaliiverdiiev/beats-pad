@@ -1,3 +1,5 @@
+import { LyricsAddPage } from "@/pages/lyrics";
+
 export default function Page() {
-  return <h1>Lyrics Add Page</h1>;
+  return <LyricsAddPage />;
 }

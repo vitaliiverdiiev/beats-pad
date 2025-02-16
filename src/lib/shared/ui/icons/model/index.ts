@@ -13,6 +13,7 @@ import {
   AlignRight,
   Highlighter,
   Upload,
+  Plus,
 } from "lucide-react";
 
 export const ICON_MAP = {
@@ -24,6 +25,7 @@ export const ICON_MAP = {
   italic: Italic,
   list: List,
   "list-ordered": ListOrdered,
+  plus: Plus,
   strikethrough: Strikethrough,
   "align-center": AlignCenter,
   "align-left": AlignLeft,
